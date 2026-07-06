@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo \"=== memory dir ===\" && ls -la \"/c/Users/PC/.claude/projects/c--Work-colab-workspace/memory/\" 2>/dev/null || echo \"\\(empty/missing\\)\"; echo \"=== workspace root ===\" && ls -la \"/c/Work/colab_workspace\")",
+      "Read(//c/Users/PC/.claude/projects/c--Work-colab-workspace/memory//**)",
+      "Bash(pnpm -v)",
+      "Bash(echo \"pnpm: $\\(pnpm -v 2>/dev/null || echo MISSING\\)\")",
+      "Bash(npm -v)",
+      "Bash(echo \"npm:  $\\(npm -v 2>/dev/null || echo MISSING\\)\")",
+      "Bash(docker -v)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(jq --version)",
+      "Bash(echo \"jq: $\\(jq --version || echo MISSING\\)\")",
+      "Bash(node -e \"const s=require\\('c:/Work/colab_workspace/.claude/settings.local.json'\\); const cmd=s.hooks.SessionStart[0].hooks[0].command; console.log\\('JSON: OK'\\); console.log\\('allow rules:', s.permissions.allow.length\\); console.log\\('SessionStart hook command present:', !!cmd\\);\")",
+      "Bash(node -e \"const s=require\\('c:/Work/colab_workspace/.claude/settings.json'\\); const cmd=s.hooks.SessionStart[0].hooks[0].command; console.log\\('JSON parse: OK'\\); console.log\\('allow rules:', JSON.stringify\\(s.permissions.allow\\)\\); console.log\\('hook cmd length:', cmd.length\\);\")",
+      "Bash(node -e \"const s=require\\('c:/Work/colab_workspace/.claude/settings.json'\\); console.log\\('JSON parse: OK'\\); console.log\\('hook cmd:', s.hooks.SessionStart[0].hooks[0].command\\);\")",
+      "Bash(pnpm install *)",
+      "Bash(pnpm -r ls --depth -1)",
+      "Bash(pnpm list *)",
+      "Bash(pnpm --filter @colab/realtime add express socket.io)",
+      "Bash(pnpm --filter @colab/realtime add -D typescript tsx @types/express @types/node)",
+      "Bash(pnpm --filter @colab/realtime remove express socket.io typescript tsx @types/express @types/node)"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash",
+      "PowerShell",
+      "Read",
+      "Write(c:/Work/colab_workspace/vault/**)",
+      "Edit(c:/Work/colab_workspace/vault/**)",
+      "Write(c:/Users/PC/.claude/projects/c--Work-colab-workspace/memory/**)",
+      "Edit(c:/Users/PC/.claude/projects/c--Work-colab-workspace/memory/**)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"=== Auto-loaded project context. Single source of truth: c:/Work/colab_workspace/vault (Obsidian) -- read it and keep it updated. Current status below (follow its [[links]] for the rest): ===\"; echo; cat \"c:/Work/colab_workspace/vault/Status.md\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

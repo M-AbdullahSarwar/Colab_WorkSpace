@@ -1,0 +1,206 @@
+{
+  "main": {
+    "id": "b251923eeb97b2ce",
+    "type": "split",
+    "children": [
+      {
+        "id": "cfc3174fe55390f4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b3829b182b28f205",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data-Model.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Data-Model"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "434c62f30a2796b3",
+    "type": "split",
+    "children": [
+      {
+        "id": "56fc2c24d036445d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "79ee39ea25cd0ca6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "d3b0e2cea131049b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "a41c672876c772b4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a7907090b8e70946",
+    "type": "split",
+    "children": [
+      {
+        "id": "541a0546068a114b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "56aca5d396ee0d20",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "concepts/Presence.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Presence"
+            }
+          },
+          {
+            "id": "21069cef8dbaed81",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "concepts/Presence.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Presence"
+            }
+          },
+          {
+            "id": "ee2a51287ed5e254",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "f7001ff1d0dfdc1f",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "374c9ea25ac569bd",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "concepts/Presence.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Presence"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "79ee39ea25cd0ca6",
+  "lastOpenFiles": [
+    "concepts/Presence.md",
+    "Untitled",
+    "concepts/Optimistic-UI.md",
+    "concepts/CRDT.md",
+    "phases/Phases.md",
+    "phases/Phase-00-Foundation.md",
+    "concepts/CORS-and-Transport.md",
+    "concepts/Auth-HTTP-and-WebSocket.md",
+    "Worklog.md",
+    "Realtime-Core.md",
+    "Overview.md",
+    "Home.md",
+    "Status.md",
+    "Glossary.md",
+    "Decisions.md",
+    "Data-Model.md",
+    "Architecture.md"
+  ]
+}
