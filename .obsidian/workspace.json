@@ -201,6 +201,8 @@
   },
   "active": "5bcdf06758078cfa",
   "lastOpenFiles": [
+    "apps/realtime/package.json",
+    "apps/realtime/package.json.1184051109",
     "pnpm-lock.yaml.4046736341",
     "node_modules",
     "_tmp_1976_39dde6757efbffcbe595eb669081ae62",
@@ -210,8 +212,6 @@
     "apps/realtime/package.json.2629690145",
     "pnpm-lock.yaml.2969351183",
     "_tmp_6516_252ccc0287daaf782dc4a3be9e350487",
-    "apps/realtime/node_modules/@types",
-    "pnpm-lock.yaml.3477513859",
     "vault/Excalidraw/Drawing 2026-07-07 01.52.55.excalidraw.md",
     "Excalidraw/Drawing 2026-07-07 01.52.23.excalidraw.md",
     "CLAUDE.md"
