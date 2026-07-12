@@ -25,8 +25,17 @@ Dated, append-only. Newest at the top.
   `apps/web/pnpm-lock.yaml` + `apps/web/pnpm-workspace.yaml` (merge `sharp: true` into root
   `allowBuilds`), then root `pnpm install` — one lockfile / one workspace root. `page.tsx` still
   the default template.
-- **Next:** add `socket.io-client` to web; write a `"use client"` component that `io()`-connects to
-  `:4000` and renders status; verify two tabs show "connected" + realtime logs two socket ids.
+- **Step 3 DONE:** `apps/web/app/page.tsx` (`"use client"`) connects to realtime via
+  `socket.io-client` inside `useEffect` with cleanup; `connect`/`disconnect`/`connect_error`
+  handled. Monorepo cleanup: removed nested lockfile + workspace file in `apps/web`. Deep CORS
+  lesson captured in [[CORS-and-Transport]] (governs polling only; WebSocket bypasses it; browser
+  gates reading the response, not the server processing it; CORS ≠ socket security).
+- **Timeline goal:** working version of all 9 phases in ~1 month (~early Aug 2026). Plan — **W1:**
+  finish Phase 0 + Phase 1 (auth) + start Phase 2 · **W2:** Phase 2 chat + Phase 3 AI + Phase 4
+  memory · **W3:** Phase 5 (break it) + Phase 6 Yjs CRDT (the hard one) · **W4:** Phase 7 presence
+  + Phase 8 AI-on-selection + Phase 9 history + polish. Rule: keep each phase to its minimal
+  runnable slice; protect W3 for Yjs.
+- **Next:** Step 4 — first typed event in `@colab/shared`, imported by both apps.
 
 ## 2026-07-05
 - Defined the project, scope, and stack (see [[Decisions]]).

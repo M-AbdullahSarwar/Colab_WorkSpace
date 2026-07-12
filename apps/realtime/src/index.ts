@@ -8,7 +8,7 @@ const WEB_PORT = process.env.WEB_PORT || 3000;
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: `http://localhost:9999`,
+    origin: `http://localhost:${WEB_PORT}`,
   },
 });
 

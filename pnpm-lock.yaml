@@ -263,6 +263,9 @@ importers:
 
   apps/realtime:
     dependencies:
+      '@colab/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       express:
         specifier: ^5.2.1
         version: 5.2.1
@@ -285,6 +288,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@colab/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       next:
         specifier: 16.2.10
         version: 16.2.10(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
