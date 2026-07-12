@@ -15,7 +15,18 @@ Dated, append-only. Newest at the top.
   (`realtime`, `shared`, `db`, `ai`); `pnpm install` recognizes all 5 workspace projects;
   `git init` + `.gitignore` verified (node_modules excluded). Note: `node_modules/@colab/`
   symlinks appear only once a package depends on another `@colab/*` (Step 4), not yet.
-- **Next:** Step 2 — hand-write the standalone Socket.IO server in `apps/realtime`.
+- **Step 2 DONE (server written & reviewed):** user hand-wrote `apps/realtime/src/index.ts` —
+  Express + `http.createServer(app)` + Socket.IO; `RT_PORT` 4000 / `WEB_PORT` 3000, CORS origin
+  = `http://localhost:${WEB_PORT}`; `io.on("connection")` logs `socket.id` + `disconnect`. Listens
+  on the http server (not `app`). tsconfig fixed (`types:["node"]`, jsx removed). Live
+  connection log verified for real in Step 3 (needs a client).
+- **Step 3 in progress:** `apps/web` scaffolded via create-next-app (Next 16, App Router, TS,
+  Tailwind); recognized as workspace member `web`. Cleanup needed: delete nested
+  `apps/web/pnpm-lock.yaml` + `apps/web/pnpm-workspace.yaml` (merge `sharp: true` into root
+  `allowBuilds`), then root `pnpm install` — one lockfile / one workspace root. `page.tsx` still
+  the default template.
+- **Next:** add `socket.io-client` to web; write a `"use client"` component that `io()`-connects to
+  `:4000` and renders status; verify two tabs show "connected" + realtime logs two socket ids.
 
 ## 2026-07-05
 - Defined the project, scope, and stack (see [[Decisions]]).
