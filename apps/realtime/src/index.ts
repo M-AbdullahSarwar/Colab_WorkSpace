@@ -21,6 +21,12 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });
+
+  socket.on("message", (message) => {
+    console.log(`Received message: ${message}`);
+
+    io.emit("message", `socket with ID ${socket.id} says: ${message}`); // Broadcast the message to all connected clients
+  });
 });
 
 server.listen(RT_PORT, () => {

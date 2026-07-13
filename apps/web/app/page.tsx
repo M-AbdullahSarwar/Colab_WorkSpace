@@ -7,11 +7,11 @@ const RT_PORT = process.env.RT_PORT || 4000;
 
 export default function Home() {
   const [socket, setSocket] = useState<Socket | null>(null);
+  const [messages, setMessages] = useState<string[]>([]);
 
   useEffect(() => {
     const socketInstance = io(
-      process.env.NEXT_PUBLIC_SOCKET_SERVER_URL ||
-        `http://localhost:${RT_PORT}`,
+      process.env.NEXT_PUBLIC_SOCKET_SERVER_URL || `ws://localhost:${RT_PORT}`,
       {
         transports: ["websocket"], // Forces websockets immediately instead of polling
       },
@@ -27,6 +27,11 @@ export default function Home() {
       setSocket(null);
     });
 
+    socketInstance.on("message", (message) => {
+      console.log(`Received message from server: ${message}`);
+      setMessages((prev) => [...prev, message]);
+    });
+
     // Clean up and close connection when the user leaves or closes the app
     return () => {
       socketInstance.disconnect();
@@ -36,6 +41,23 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <p>Socket Connected: {socket ? "Yes" : "No"}</p>
+      <input
+        type="text"
+        placeholder="Type a message..."
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && socket) {
+            socket.emit("message", e.currentTarget.value);
+            e.currentTarget.value = "";
+          }
+        }}
+      />
+
+      <p>Messages:</p>
+      <ul>
+        {messages.map((msg, index) => (
+          <li key={index}>{msg}</li>
+        ))}
+      </ul>
     </div>
   );
 }
