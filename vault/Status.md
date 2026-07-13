@@ -2,7 +2,7 @@
 
 > The single "where are we now" note. I update this at the end of every working step.
 
-- **Current phase:** Phase 0 — Foundation · 🟨 nearly done (Steps 1–3 ✓; Step 4 next, then Step 5)
+- **Current phase:** Phase 0 — Foundation · 🟨 nearly done (Steps 1–4 ✓; Step 5 left — blocked on Docker)
 - **Last updated:** 2026-07-07
 - **Who writes the code:** the user. I guide, review, explain — I do not implement. See [[Decisions]].
 - **Monorepo tool:** pnpm workspaces (decided — [[Decisions]] #7; Turborepo deferred until builds slow).
@@ -10,20 +10,17 @@
 - **Target:** working version through all 9 phases in ~1 month (~early Aug 2026); week plan in [[Worklog]].
 
 ## Next concrete action
-Step 3 done (web client connects to realtime; deep CORS understanding — [[CORS-and-Transport]]).
-**Step 4:** define socket event-contract types in `packages/shared` (`ClientToServerEvents` /
-`ServerToClientEvents`), add `@colab/shared` as a `workspace:*` dep of BOTH apps (creates the first
-`node_modules/@colab` symlink), type the `Server` (realtime) + client socket (web) with them, and
-add `transpilePackages: ["@colab/shared"]` to Next. Proof: rename an event in shared → both apps
-fail to compile. **Then Step 5** (needs Docker): Postgres + Prisma + `User` model + migration →
-Phase 0 done. See [[Realtime-Core]], [[Data-Model]].
+Step 4 done & verified: typed event contract in `@colab/shared` (`chat` event), both apps import
+it, `@colab/shared` symlinked into each app's `node_modules`. **Step 5 (finishes Phase 0), needs
+Docker:** install Docker Desktop → Postgres in a container → `prisma init` in `packages/db` → one
+`User` model → `prisma migrate` creates the table. See [[Data-Model]].
 
 ## Definition of done for the current phase
 Two browser tabs both show "connected"; realtime server logs two socket ids; `prisma migrate`
 created the `User` table; user can explain their CORS config. Full detail in [[Phase-00-Foundation]].
 
 ## Open blockers
-- None yet.
+- **Docker not installed** — blocks Step 5 (Postgres). Install Docker Desktop.
 
 ## Recently decided
 - Obsidian vault created to carry project context across sessions; `CLAUDE.md` + a SessionStart

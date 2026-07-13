@@ -2,6 +2,16 @@
 
 Dated, append-only. Newest at the top.
 
+## 2026-07-14
+- **Step 4 DONE & verified:** event contract typed in `@colab/shared/src/index.ts`
+  (`ClientToServerEvents`/`ServerToClientEvents`, `chat: (msg: string) => void`); shared
+  `package.json` `exports` → `./src/index.ts`; `transpilePackages: ["@colab/shared"]` in Next; both
+  apps import the types and type their `Server`/`Socket` (generic order correctly flipped —
+  `<events I receive, events I send>`); `@colab/shared` now symlinked into each app's `node_modules`
+  (monorepo payoff visible). Drift test passed.
+- **Next:** Step 5 (finishes Phase 0) — Postgres container, `prisma init` in `packages/db`, `User`
+  model, `prisma migrate`. **Blocked:** Docker not installed.
+
 ## 2026-07-07
 - Set up cross-session automation: `.claude/settings.json` grants broad Bash/PowerShell perms +
   a SessionStart hook that auto-injects `Status.md`; root `CLAUDE.md` reduced to a pure pointer to

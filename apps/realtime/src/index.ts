@@ -1,12 +1,13 @@
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
+import type { ClientToServerEvents, ServerToClientEvents } from "@colab/shared";
 
 const app = express();
 const RT_PORT = process.env.RT_PORT || 4000;
 const WEB_PORT = process.env.WEB_PORT || 3000;
 const server = http.createServer(app);
-const io = new Server(server, {
+const io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
   cors: {
     origin: `http://localhost:${WEB_PORT}`,
   },
@@ -22,10 +23,10 @@ io.on("connection", (socket) => {
     console.log("user disconnected");
   });
 
-  socket.on("message", (message) => {
-    console.log(`Received message: ${message}`);
+  socket.on("chat", (chatMessage) => {
+    console.log(`Received chat message: ${chatMessage}`);
 
-    io.emit("message", `socket with ID ${socket.id} says: ${message}`); // Broadcast the message to all connected clients
+    io.emit("chat", `socket with ID ${socket.id} says: ${chatMessage}`); // Broadcast the chat message to all connected clients
   });
 });
 

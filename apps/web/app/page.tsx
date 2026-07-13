@@ -1,21 +1,27 @@
 "use client";
 import { io, Socket } from "socket.io-client";
 import { useEffect, useState } from "react";
+import type { ClientToServerEvents, ServerToClientEvents } from "@colab/shared";
 
 const WEB_PORT = process.env.WEB_PORT || 3000;
 const RT_PORT = process.env.RT_PORT || 4000;
 
 export default function Home() {
-  const [socket, setSocket] = useState<Socket | null>(null);
-  const [messages, setMessages] = useState<string[]>([]);
+  const [socket, setSocket] = useState<Socket<
+    ServerToClientEvents,
+    ClientToServerEvents
+  > | null>(null);
+  const [chat, setChat] = useState<string[]>([]);
 
   useEffect(() => {
-    const socketInstance = io(
-      process.env.NEXT_PUBLIC_SOCKET_SERVER_URL || `ws://localhost:${RT_PORT}`,
-      {
-        transports: ["websocket"], // Forces websockets immediately instead of polling
-      },
-    );
+    const socketInstance: Socket<ServerToClientEvents, ClientToServerEvents> =
+      io(
+        process.env.NEXT_PUBLIC_SOCKET_SERVER_URL ||
+          `http://localhost:${RT_PORT}`,
+        {
+          transports: ["websocket"], // Forces websockets immediately instead of polling
+        },
+      );
     socketInstance.on("connect", () => {
       setSocket(socketInstance);
     });
@@ -27,9 +33,9 @@ export default function Home() {
       setSocket(null);
     });
 
-    socketInstance.on("message", (message) => {
-      console.log(`Received message from server: ${message}`);
-      setMessages((prev) => [...prev, message]);
+    socketInstance.on("chat", (chatMessage) => {
+      console.log(`Received message from server: ${chatMessage}`);
+      setChat((prev) => [...prev, chatMessage]);
     });
 
     // Clean up and close connection when the user leaves or closes the app
@@ -46,7 +52,7 @@ export default function Home() {
         placeholder="Type a message..."
         onKeyDown={(e) => {
           if (e.key === "Enter" && socket) {
-            socket.emit("message", e.currentTarget.value);
+            socket.emit("chat", e.currentTarget.value);
             e.currentTarget.value = "";
           }
         }}
@@ -54,7 +60,7 @@ export default function Home() {
 
       <p>Messages:</p>
       <ul>
-        {messages.map((msg, index) => (
+        {chat.map((msg, index) => (
           <li key={index}>{msg}</li>
         ))}
       </ul>
