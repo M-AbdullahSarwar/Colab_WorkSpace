@@ -27,6 +27,11 @@ Running log. Each entry: decision · why · date. Append newest at the bottom.
      builds get slow/repetitive** — same "feel the problem before the solution" principle as the
      naive-sync→CRDT arc. Adopting it changes nothing already built.
 
+8. **Database: Postgres in Docker locally (dev); managed Postgres (Neon) at deploy.** Why: a local
+   container is free/offline/fast for heavy dev iteration and teaches running infra; Neon's
+   serverless strengths matter at deploy. Prisma abstracts the difference — same schema, swap
+   `DATABASE_URL` per environment. — 2026-07-14
+
 ## Still open (decide when reached)
 - Auth: Auth.js vs hand-rolled JWT.
 - Editor: Tiptap vs CodeMirror 6.

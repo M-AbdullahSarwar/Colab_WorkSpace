@@ -20,7 +20,8 @@
       "Bash(pnpm list *)",
       "Bash(pnpm --filter @colab/realtime add express socket.io)",
       "Bash(pnpm --filter @colab/realtime add -D typescript tsx @types/express @types/node)",
-      "Bash(pnpm --filter @colab/realtime remove express socket.io typescript tsx @types/express @types/node)"
+      "Bash(pnpm --filter @colab/realtime remove express socket.io typescript tsx @types/express @types/node)",
+      "Bash(docker compose *)"
     ]
   }
 }

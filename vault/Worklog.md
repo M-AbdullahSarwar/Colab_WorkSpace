@@ -9,8 +9,9 @@ Dated, append-only. Newest at the top.
   apps import the types and type their `Server`/`Socket` (generic order correctly flipped —
   `<events I receive, events I send>`); `@colab/shared` now symlinked into each app's `node_modules`
   (monorepo payoff visible). Drift test passed.
-- **Next:** Step 5 (finishes Phase 0) — Postgres container, `prisma init` in `packages/db`, `User`
-  model, `prisma migrate`. **Blocked:** Docker not installed.
+- **Docker installed** (29.6.1, Compose v5.3.0, daemon running). **DB decision:** Postgres in
+  Docker locally for dev; Neon (managed) at deploy — Prisma swaps via `DATABASE_URL` ([[Decisions]] #8).
+- **Next:** Step 5 in progress — compose Postgres, Prisma init in `packages/db`, `User` model, migrate.
 
 ## 2026-07-07
 - Set up cross-session automation: `.claude/settings.json` grants broad Bash/PowerShell perms +

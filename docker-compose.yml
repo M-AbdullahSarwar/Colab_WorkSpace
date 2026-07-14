@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: colab-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: colab
+      POSTGRES_PASSWORD: colab
+      POSTGRES_DB: colab
+    volumes:
+      - colab-pgdata:/var/lib/postgresql/data
+
+volumes:
+  colab-pgdata:
