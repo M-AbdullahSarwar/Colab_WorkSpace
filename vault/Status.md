@@ -2,8 +2,8 @@
 
 > The single "where are we now" note. I update this at the end of every working step.
 
-- **Current phase:** Phase 0 — Foundation · 🟨 nearly done (Steps 1–4 ✓; Step 5 in progress — Docker ready)
-- **Last updated:** 2026-07-14
+- **Current phase:** Phase 1 — Auth / Workspaces / Permissions · 🟦 starting (Phase 0 ✅ complete)
+- **Last updated:** 2026-07-15
 - **Who writes the code:** the user. I guide, review, explain — I do not implement. See [[Decisions]].
 - **Monorepo tool:** pnpm workspaces (decided — [[Decisions]] #7; Turborepo deferred until builds slow).
 - **Env:** Node 24 ✓, git ✓, pnpm 11.10 ✓, docker 29 ✓ · jq ✗.
@@ -11,16 +11,16 @@
 - **Target:** working version through all 9 phases in ~1 month (~early Aug 2026); week plan in [[Worklog]].
 
 ## Next concrete action
-Step 5 in progress (Docker installed & running). Do: (1) `docker-compose.yml` at root with a
-`postgres:17` service (port 5432, named volume for persistence) → `docker compose up -d`; (2) in
-`packages/db`: add `prisma` (dev) + `@prisma/client`, `prisma init --datasource-provider
-postgresql`, set `DATABASE_URL` to the local container; (3) add the `User` model; (4)
-`prisma migrate dev --name init` → creates the table + generates the client. Finishes Phase 0.
-See [[Data-Model]].
+Phase 0 complete. **Phase 1 kickoff** — first decide the **auth strategy** (hand-rolled JWT vs
+Auth.js), because one token must authenticate BOTH the Next HTTP app and the standalone socket
+handshake. Then: email/password login → create workspace → `Membership` + roles → `assertCan`
+helper → the token verified in both HTTP and `socket.handshake.auth`. See
+[[Auth-HTTP-and-WebSocket]], [[Data-Model]].
 
 ## Definition of done for the current phase
-Two browser tabs both show "connected"; realtime server logs two socket ids; `prisma migrate`
-created the `User` table; user can explain their CORS config. Full detail in [[Phase-00-Foundation]].
+**(Phase 1)** Log in with email/password; create a workspace; add a second user; see role-gated UI;
+the **same token** authenticates both an HTTP request and the socket handshake. (Phase 0 ✅: two
+tabs connected + two socket ids, `User` table migrated, CORS understood — see [[Phase-00-Foundation]].)
 
 ## Open blockers
 - None.

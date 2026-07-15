@@ -2,6 +2,24 @@
 
 Dated, append-only. Newest at the top.
 
+## 2026-07-16
+- **Phase 1 Step 1 done:** `Workspace` + `Membership` models and `Role` + `Salutation` enums added
+  and migrated (`20260715190315_workspaces_and_memberships`). Fixed nullable `workspaceId` →
+  required (NULLs would defeat `@@unique([workspaceId, userId])`); renamed `ROLE`→`Role`,
+  `MemberShip`→`Membership`. See [[Data-Model]].
+- **Auth decided:** hand-rolled JWT ([[Decisions]] #9).
+- **Next:** Step 2 — `prisma generate`, then export a Prisma client singleton from `@colab/db` and
+  wire it into the apps.
+
+## 2026-07-15
+- **Phase 0 COMPLETE.** Step 5 done: `docker-compose.yml` runs `postgres:17` (container
+  `colab-postgres`, volume `colab-pgdata`, port 5432); Prisma 7 in `packages/db` (config in
+  `prisma.config.ts`, `pg` driver adapter, `dotenv` loads env); `User` migrated — `id` native
+  `@db.Uuid`, unique `email`, name split into `salutation?/firstName/middleName?/lastName/
+  avatarUrl?`. Added `packages/db/tsconfig.json` (bundler resolution) to fix editor module errors.
+  Learned Docker (image/container/volume/ports) and Prisma (schema → migrate → typed client).
+- **Next:** Phase 1 (auth/workspaces/permissions). First decision: auth strategy (JWT vs Auth.js).
+
 ## 2026-07-14
 - **Step 4 DONE & verified:** event contract typed in `@colab/shared/src/index.ts`
   (`ClientToServerEvents`/`ServerToClientEvents`, `chat: (msg: string) => void`); shared

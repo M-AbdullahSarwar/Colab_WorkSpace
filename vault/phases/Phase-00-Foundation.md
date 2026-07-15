@@ -24,4 +24,14 @@ Two browser tabs show "connected"; realtime logs two socket ids; `prisma migrate
 user can explain their CORS config.
 
 ## Notes / findings
-- (append learnings here as we go)
+- **DONE 2026-07-15.** All DoD met.
+- CORS deep-dive (see [[CORS-and-Transport]]): only governs polling; WebSocket bypasses it; browser
+  gates *reading the response*, not the server *processing the request*; CORS ≠ socket security.
+- Socket.IO connects over an **`http://`** URL (not `ws://`) — it upgrades internally. One socket
+  connection multiplexes many named events; client events = `connect`/`disconnect`/`connect_error`,
+  server event = `connection`.
+- Typed event contract lives in `@colab/shared` (`ClientToServerEvents`/`ServerToClientEvents`);
+  generic order flips between `Server<C2S,S2C>` and `Socket<S2C,C2S>` = `<receive, send>`.
+- DB: Postgres in Docker (compose + named volume for persistence); Prisma schema → migration SQL →
+  typed client. `String` defaults to `TEXT`; override with `@db.` (e.g. `@db.Uuid`). Relational =
+  flat columns (name split, no nested object).

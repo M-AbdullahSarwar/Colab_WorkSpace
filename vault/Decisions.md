@@ -32,7 +32,11 @@ Running log. Each entry: decision · why · date. Append newest at the bottom.
    serverless strengths matter at deploy. Prisma abstracts the difference — same schema, swap
    `DATABASE_URL` per environment. — 2026-07-14
 
+9. **Auth: hand-rolled JWT** (not Auth.js). Why: one token must authenticate both the Next HTTP app
+   and the standalone Socket.IO handshake; signing/verifying a JWT with a shared secret makes that
+   one-token-two-transports flow explicit and is the most educational — which is the Phase-1 lesson.
+   Password hashing done ourselves (bcrypt). — 2026-07-15
+
 ## Still open (decide when reached)
-- Auth: Auth.js vs hand-rolled JWT.
 - Editor: Tiptap vs CodeMirror 6.
 - Which AI provider to implement first.

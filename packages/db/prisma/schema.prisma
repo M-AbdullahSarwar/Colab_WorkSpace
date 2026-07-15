@@ -12,15 +12,54 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Salutation {
+  MR
+  MS
+  MRS
+  DR
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
 model User {
-  id           String   @id @default(uuid()) @db.Uuid
-  email        String   @unique
-  passwordHash String
-  salutation   String?          // optional (Mr/Ms/Dr…)
-  firstName    String           // required
-  middleName   String?          // optional
-  lastName     String           // required
-  avatarUrl    String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id              String       @id @default(uuid()) @db.Uuid
+  email           String       @unique
+  passwordHash    String
+  salutation      Salutation? // optional (Mr/Ms/Dr…)
+  firstName       String // required
+  middleName      String? // optional
+  lastName        String // required
+  avatarUrl       String?
+  ownedWorkspaces Workspace[]
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  memberShips     Membership[]
+}
+
+model Workspace {
+  id        String       @id @default(uuid()) @db.Uuid
+  name      String
+  owner     User         @relation(fields: [ownerId], references: [id])
+  ownerId   String       @db.Uuid
+  members   Membership[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model Membership {
+  id          String     @id @default(uuid()) @db.Uuid
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String     @db.Uuid
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  workspaceId String    @db.Uuid
+  role        Role
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@unique([workspaceId, userId]) // a user can be a member of a workspace only once
 }
