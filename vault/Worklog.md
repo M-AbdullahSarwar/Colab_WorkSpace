@@ -2,6 +2,15 @@
 
 Dated, append-only. Newest at the top.
 
+## 2026-07-17
+- **Phase 1 Step 2 done:** `@colab/db` exports a Prisma client **singleton** (`src/index.ts`, `pg`
+  driver adapter, `globalThis` cache so Next dev hot-reload doesn't leak connection pools);
+  package `exports` + `type:module`; wired into `web` (dep + `transpilePackages`), `DATABASE_URL`
+  in `apps/web/.env.local`, `serverExternalPackages: ["@prisma/adapter-pg","pg"]` in next.config.
+  Import fix: generated client is **extensionless** (`../generated/prisma/client`), matching
+  Prisma 7's output (my `.js` was wrong). `/api/db-check` → `{"users":0}`.
+- **Next:** Step 3 — auth core (JWT helper in `@colab/shared/auth`, bcrypt, register/login routes).
+
 ## 2026-07-16
 - **Phase 1 Step 1 done:** `Workspace` + `Membership` models and `Role` + `Salutation` enums added
   and migrated (`20260715190315_workspaces_and_memberships`). Fixed nullable `workspaceId` →

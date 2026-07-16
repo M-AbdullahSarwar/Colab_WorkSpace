@@ -1,0 +1,6 @@
+import { prisma } from "@colab/db";
+
+export async function GET() {
+  const count = await prisma.user.count();
+  return Response.json({ users: count });
+}

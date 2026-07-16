@@ -11,11 +11,11 @@
 - **Target:** working version through all 9 phases in ~1 month (~early Aug 2026); week plan in [[Worklog]].
 
 ## Next concrete action
-Phase 0 complete. **Phase 1 kickoff** — first decide the **auth strategy** (hand-rolled JWT vs
-Auth.js), because one token must authenticate BOTH the Next HTTP app and the standalone socket
-handshake. Then: email/password login → create workspace → `Membership` + roles → `assertCan`
-helper → the token verified in both HTTP and `socket.handshake.auth`. See
-[[Auth-HTTP-and-WebSocket]], [[Data-Model]].
+Phase 1: Step 1 (Workspace/Membership/Role migrated) ✓, Step 2 (`@colab/db` Prisma client
+singleton wired into `web`) ✓. **Step 3 — auth core:** `jose` JWT helper in `@colab/shared/auth`
+(sign/verify + `AuthTokenPayload`), `bcryptjs` hashing, `JWT_SECRET` env, Next
+`/api/auth/register` + `/api/auth/login` returning a token. Then Step 4 wires the token into the
+socket handshake (the two-process payoff). See [[Auth-HTTP-and-WebSocket]].
 
 ## Definition of done for the current phase
 **(Phase 1)** Log in with email/password; create a workspace; add a second user; see role-gated UI;
