@@ -2,6 +2,22 @@
 
 Dated, append-only. Newest at the top.
 
+## 2026-07-23
+- **Adopted 3-layer backend structure** ([[Decisions]] #10) and refactored the auth core to it
+  (at the user's request, Claude implemented this one; default is still user-writes-code):
+  zod schemas in `@colab/shared/schema` (Email/Password/Salutation/Name + Register/Login + inferred
+  types); service layer `apps/web/lib/auth.ts` (`registerUser`/`authenticateUser`, HTTP-agnostic,
+  typed errors `EmailTakenError`/`InvalidCredentialsError`); thin route handlers (validate → service
+  → map errors). `auth.ts` now throws if `JWT_SECRET` unset.
+- **Bugs fixed:** salutation zod values now match the Prisma enum (`MR/MS/MRS/DR`, not "Mr."); dropped
+  `NameSchema._def.shape()` internals hack for `.extend()`; routes now use validated `parsed.data`.
+- **Note:** two zod versions in the tree (v4.4.3 used by shared, transitive v3.25.76) — used
+  `z.string().email()` (valid in both) to avoid the editor mis-resolving to v3. Web typecheck: clean.
+- **Verified end-to-end** (curl, clean run): register → 201, dup → 409, login → 200 + JWT
+  (payload `{userId, iat, exp}`, 7-day expiry, correct userId), wrong password → 401. **Auth core
+  (Step 3) DONE.**
+- **Next:** Step 4 — client login form + carry the token into the socket handshake.
+
 ## 2026-07-17
 - **Phase 1 Step 2 done:** `@colab/db` exports a Prisma client **singleton** (`src/index.ts`, `pg`
   driver adapter, `globalThis` cache so Next dev hot-reload doesn't leak connection pools);

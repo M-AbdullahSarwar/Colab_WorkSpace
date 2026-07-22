@@ -37,6 +37,14 @@ Running log. Each entry: decision · why · date. Append newest at the bottom.
    one-token-two-transports flow explicit and is the most educational — which is the Phase-1 lesson.
    Password hashing done ourselves (bcrypt). — 2026-07-15
 
+10. **Backend structure: thin route → service → Prisma, with zod validation at the boundary.**
+    Reusable zod schemas live in `@colab/shared` (subpath `./schemas`, split by domain) so the
+    client form and the server route validate identically from **one** source. The route is the
+    **HTTP boundary only** (parse, validate → 400, call service, map errors → status, format
+    Response); business logic lives in **HTTP-agnostic service functions** (`apps/web/lib/*`) so it
+    can be reused by a socket handler later; Prisma is the data layer. **No separate Repository
+    layer** — Prisma is already the abstraction; wrapping it is ceremony for this scale. — 2026-07-23
+
 ## Still open (decide when reached)
 - Editor: Tiptap vs CodeMirror 6.
 - Which AI provider to implement first.

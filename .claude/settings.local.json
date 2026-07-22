@@ -21,7 +21,15 @@
       "Bash(pnpm --filter @colab/realtime add express socket.io)",
       "Bash(pnpm --filter @colab/realtime add -D typescript tsx @types/express @types/node)",
       "Bash(pnpm --filter @colab/realtime remove express socket.io typescript tsx @types/express @types/node)",
-      "Bash(docker compose *)"
+      "Bash(docker compose *)",
+      "Bash(pnpm --filter @colab/shared add zod)",
+      "Bash(node -e \"console.log\\(require\\('./packages/shared/node_modules/zod/package.json'\\).version\\)\")",
+      "Bash(pnpm ls *)",
+      "Bash(node -e \"console.log\\(require.resolve\\('zod', { paths: ['./packages/shared'] }\\)\\)\")",
+      "Bash(node -e \"console.log\\('version:', require\\('./packages/shared/node_modules/zod/package.json'\\).version\\)\")",
+      "Bash(pnpm --filter @colab/shared exec tsc --noEmit)",
+      "Bash(pnpm --filter web exec tsc --noEmit)",
+      "Bash(echo \"TYPECHECK EXIT CODE: $?\")"
     ]
   }
 }

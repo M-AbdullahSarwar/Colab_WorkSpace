@@ -11,11 +11,12 @@
 - **Target:** working version through all 9 phases in ~1 month (~early Aug 2026); week plan in [[Worklog]].
 
 ## Next concrete action
-Phase 1: Step 1 (Workspace/Membership/Role migrated) ✓, Step 2 (`@colab/db` Prisma client
-singleton wired into `web`) ✓. **Step 3 — auth core:** `jose` JWT helper in `@colab/shared/auth`
-(sign/verify + `AuthTokenPayload`), `bcryptjs` hashing, `JWT_SECRET` env, Next
-`/api/auth/register` + `/api/auth/login` returning a token. Then Step 4 wires the token into the
-socket handshake (the two-process payoff). See [[Auth-HTTP-and-WebSocket]].
+Phase 1: Steps 1–3 ✓ — auth core verified end-to-end (register/login → JWT), built on the 3-layer
+structure ([[Decisions]] #10): zod schemas in `@colab/shared/schema`, service in `apps/web/lib/auth.ts`,
+thin routes. **Step 4 — cross-process auth (the Phase-1 trap):** client login form stores the token;
+attach it to `socket.handshake.auth`; realtime `io.use(...)` middleware calls `verifyToken`
+(`@colab/shared/auth`) → sets `socket.data.userId`. One token, both transports.
+See [[Auth-HTTP-and-WebSocket]].
 
 ## Definition of done for the current phase
 **(Phase 1)** Log in with email/password; create a workspace; add a second user; see role-gated UI;

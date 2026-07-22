@@ -3,5 +3,5 @@ export interface ClientToServerEvents {
 }
 
 export interface ServerToClientEvents {
-    chat: (chatMessage: string) => void;
+  chat: (chatMessage: string) => void;
 }
