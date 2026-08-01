@@ -10,7 +10,14 @@
 - **DB:** Postgres in Docker (dev) / Neon at deploy — Prisma swaps via `DATABASE_URL` ([[Decisions]] #8).
 - **Target:** working version through all 9 phases in ~1 month (~early Aug 2026); week plan in [[Worklog]].
 
-## Next concrete action
+## Next concrete action (updated 2026-07-31)
+Step 4 almost done — socket auth middleware + login/signup pages work, token stored in
+`localStorage`. **Do now:** (a) `page.tsx` must send it — `io(url, { auth: { token } })`, don't
+connect if absent; (b) proof: logged out → `connect_error` + server silent; logged in → realtime logs
+a real `userId`; tampered token → rejected. **Then:** workspace creation + `Membership` → `assertCan`
+→ role-gated UI + `room:join` authorization (finishes Phase 1). See [[Auth-HTTP-and-WebSocket]].
+
+## Earlier next-action (superseded)
 Phase 1: Steps 1–3 ✓ — auth core verified end-to-end (register/login → JWT), built on the 3-layer
 structure ([[Decisions]] #10): zod schemas in `@colab/shared/schema`, service in `apps/web/lib/auth.ts`,
 thin routes. **Step 4 — cross-process auth (the Phase-1 trap):** client login form stores the token;

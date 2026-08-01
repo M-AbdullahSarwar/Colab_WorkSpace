@@ -2,6 +2,21 @@
 
 Dated, append-only. Newest at the top.
 
+## 2026-07-31
+- **Phase 1 Step 4 (cross-process auth) nearly done.** Realtime: `io.use` middleware verifies the JWT
+  (`@colab/shared/auth`) + confirms the user exists in the DB → `socket.data.userId`; 4 Server
+  generics incl. `SocketData`; `apps/realtime/.env` (JWT_SECRET **identical** to web's + DATABASE_URL),
+  `tsx watch --env-file=.env`. Web: `/login` + `/signup` pages `fetch` the API routes and validate
+  with the shared zod schemas; login stores the token in `localStorage`.
+- **Critical bug caught & fixed:** client components were importing the *server* service layer
+  (`@/lib/auth` → prisma/bcrypt/JWT_SECRET) — would have pulled secrets toward the browser bundle.
+  Fix: client talks to routes over `fetch`, and `import "server-only"` now guards `lib/auth.ts` so
+  the mistake fails at build time. **Server/client is a bundling boundary, not a type boundary.**
+- **Learned:** token carries identity only; `permissions` must NOT live in the token or `SocketData`
+  (per-workspace in our model + staleness = security hole) — see [[Auth-HTTP-and-WebSocket]].
+- **Next:** 4.5 send the token in `io(url, { auth: { token } })`, run the 4.6 proof, then workspaces
+  + `assertCan`.
+
 ## 2026-07-23
 - **Adopted 3-layer backend structure** ([[Decisions]] #10) and refactored the auth core to it
   (at the user's request, Claude implemented this one; default is still user-writes-code):

@@ -1,3 +1,5 @@
+import "server-only"; // first line of lib/auth.ts
+
 import bcrypt from "bcryptjs";
 import { prisma } from "@colab/db";
 import { signToken } from "@colab/shared/auth";

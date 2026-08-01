@@ -45,6 +45,15 @@ Running log. Each entry: decision · why · date. Append newest at the bottom.
     can be reused by a socket handler later; Prisma is the data layer. **No separate Repository
     layer** — Prisma is already the abstraction; wrapping it is ceremony for this scale. — 2026-07-23
 
+11. **Token storage: `localStorage` — a deliberate, known simplification.** Why: makes the socket
+    handshake mechanism explicit (the learning goal) and avoids CORS-credentials wiring. **Cost:**
+    XSS-readable; OWASP discourages long-lived tokens there. httpOnly cookie (XSS-safe, adds CSRF)
+    or the hybrid (in-memory access token + httpOnly refresh cookie) is the production answer.
+    **Revisit before deploy.** See [[Auth-HTTP-and-WebSocket]]. — 2026-07-23
+12. **Teaching format: concept → trade-offs → references → then steps.** Why: the user must
+    understand *why*, not follow a checklist; bare step lists defeat the point of the project.
+    Every non-trivial step gets the problem, the mental model, alternatives, and real links. — 2026-07-23
+
 ## Still open (decide when reached)
 - Editor: Tiptap vs CodeMirror 6.
 - Which AI provider to implement first.

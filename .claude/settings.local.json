@@ -29,7 +29,8 @@
       "Bash(node -e \"console.log\\('version:', require\\('./packages/shared/node_modules/zod/package.json'\\).version\\)\")",
       "Bash(pnpm --filter @colab/shared exec tsc --noEmit)",
       "Bash(pnpm --filter web exec tsc --noEmit)",
-      "Bash(echo \"TYPECHECK EXIT CODE: $?\")"
+      "Bash(echo \"TYPECHECK EXIT CODE: $?\")",
+      "WebSearch"
     ]
   }
 }
