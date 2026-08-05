@@ -37,10 +37,13 @@ io.use(async (socket, next) => {
     try {
         const { userId } = await verifyToken(token);
 
-        const res = await prisma.user.findUnique({ where: { id: userId } });
-        if (!res) {
+        const user = await prisma.user.findUnique({ where: { id: userId } });
+        if (!user) {
             return next(new Error("Authentication error: User not found"));
-        } else socket.data.userId = userId;
+        } else {
+            socket.data.userId = userId;
+            socket.data.displayName = user.firstname + " " + user.lastname;
+        }
     } catch {
         return next(new Error("Authentication error: Invalid token"));
     }

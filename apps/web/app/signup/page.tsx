@@ -70,12 +70,14 @@ export default function SignupPage() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <select
-                    value={salutation}
+                    value={salutation || undefined}
                     onChange={(e) =>
-                        setSalutation(e.target.value as Salutation)
+                        setSalutation(
+                            (e.target.value as Salutation) || undefined,
+                        )
                     }
                 >
-                    <option value="">Select Salutation</option>
+                    <option value={undefined}>Select Salutation</option>
                     <option value="MR">Mr</option>
                     <option value="MRS">Mrs</option>
                     <option value="MS">Ms</option>
@@ -90,8 +92,8 @@ export default function SignupPage() {
                 <input
                     type="text"
                     placeholder="Middle Name"
-                    value={middleName}
-                    onChange={(e) => setMiddleName(e.target.value)}
+                    value={middleName || undefined}
+                    onChange={(e) => setMiddleName(e.target.value || undefined)}
                 />
                 <input
                     type="text"

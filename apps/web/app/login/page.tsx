@@ -16,7 +16,9 @@ export default function LoginPage() {
 
         const loginData = LoginRequestBodySchema.safeParse({ email, password });
         if (!loginData.success) {
-            setError("Invalid email or password");
+            setError(
+                "Enter a valid email and a password of at least 6 characters",
+            );
             return;
         }
 
@@ -26,8 +28,9 @@ export default function LoginPage() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(loginData.data),
             });
-            if (response.status === 401) {
-                setError("Invalid email or password");
+            if (!response.ok) {
+                setError("Login Failed");
+                return;
             }
 
             const data = await response.json();
@@ -37,6 +40,7 @@ export default function LoginPage() {
             }
         } catch (err) {
             setError("Login Failed");
+            return;
         }
     };
 
