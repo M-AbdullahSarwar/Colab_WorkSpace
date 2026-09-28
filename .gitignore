@@ -3,3 +3,9 @@ node_modules/
 dist/
 .env*
 .obsidian/
+# Impeccable: runtime binary is downloaded per-machine, not committed
+.claude/skills/impeccable/scripts/bin/
+# Impeccable per-machine overrides and generated mocks (surface briefs ARE committed)
+.impeccable/config.local.json
+.impeccable/live/
+.impeccable/mocks/

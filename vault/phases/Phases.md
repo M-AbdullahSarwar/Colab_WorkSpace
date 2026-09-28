@@ -4,8 +4,8 @@ Full detail in `../../ROADMAP.md`. Status tracker here. ⭐ = real-time learning
 
 | #   | Phase                                     | Status        |
 | --- | ----------------------------------------- | ------------- |
-| 0   | Foundation                                | ⬜ not started |
-| 1   | Auth, workspaces, permissions             | ⬜             |
+| 0   | Foundation                                | ✅ done        |
+| 1   | Auth, workspaces, permissions             | 🟨 steps 1–4 ✅, step 5 next |
 | 2   | ⭐ Shared live chat (no AI)                | ⬜             |
 | 3   | ⭐ AI streaming to the room                | ⬜             |
 | 4   | Shared memory / context                   | ⬜             |
@@ -17,4 +17,5 @@ Full detail in `../../ROADMAP.md`. Status tracker here. ⭐ = real-time learning
 
 Legend: ⬜ not started · 🟨 in progress · ✅ done
 
-Active phase detail: [[Phase-00-Foundation]]. The real-time learning curve peaks at Phases 5–7.
+Active phase: **Phase 1** (no dedicated note yet — tracked in [[Status]] + [[Auth-HTTP-and-WebSocket]]).
+Phase 0 detail: [[Phase-00-Foundation]]. The real-time learning curve peaks at Phases 5–7.

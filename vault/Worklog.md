@@ -2,6 +2,112 @@
 
 Dated, append-only. Newest at the top.
 
+## 2026-09-28 (later)
+- **UI defects reported by the user, fixed:**
+  - **Double border on every text field** - cause was the focus state drawing an accent *border*
+    (`focus:border-accent`) **and** an offset accent *outline* at the same time, in `Field`, the
+    signup `select` and the composer. Tailwind v4 preflight was confirmed to reset native control
+    borders, so this was ours, not the browser's. Now one focus affordance: the resting hairline
+    border plus the single global `:focus-visible` ring.
+  - **Both lint errors cleared** (`pnpm lint` clean). (1) `myNameRef.current = myName` ran during
+    render - moved into an effect. (2) `setMe()` was called synchronously in an effect body -
+    `localStorage` is an external store, so the display-only user cache is now read with
+    `useSyncExternalStore`, which is also hydration-safe.
+- **Two product requirements confirmed and recorded in `PRODUCT.md`:**
+  - **The app has TWO surfaces, not one.** Rooms (the live thread, exists) and **Documents** - a
+    shared prompt/doc the team edits together in real time with **AI assistance on a selection**.
+    The user confirmed this is a *separate* surface, not a mode of the room. This is already
+    Phases 5-8 on the roadmap (naive editing -> Yjs CRDT -> AI on selection) - the hard part the
+    project exists to learn.
+  - **User management is missing** - members, roles, invite, revoke. Depends on `Membership` +
+    `assertCan`, so it is Phase 1 step 5 work.
+- **Deliberately NOT built yet:** the user-management UI. With no workspace API it could only ever
+  render "not built yet", which adds noise rather than insight. It gets built in step 5 where it
+  wires to real data immediately.
+- **`DESIGN.md` + `.impeccable/design.json` written** by the documenter: 16 colours, 9 type roles,
+  14 named rules. It recorded four honest departures from the direction contract - no room list,
+  header chips are past speakers rather than live presence, connection state appears twice, and an
+  unread count the contract never asked for.
+
+## 2026-09-28
+- **UI rebuilt from scaffold to a designed surface**, using the Impeccable plugin followed manually
+  from its reference files (the plugin installs at user scope but only registers as `/impeccable`
+  after a restart, so this session ran its launcher + playbooks by hand).
+- **Skill vendored into the repo** at `.claude/skills/impeccable/` (v4.4.0, 2.2 MB) plus its 4 agents
+  in `.claude/agents/`, so it travels to other machines; verified the vendored launcher resolves
+  context correctly. `.gitignore` now excludes the per-machine `scripts/bin/` and generated mocks.
+  Note: the launcher has its own `impeccable install` command that does this officially.
+- **`PRODUCT.md` written at repo root** - Impeccable's machine-read product record. It restates
+  product facts only and defers to the vault as source of truth. Confirmed with the user:
+  **real tool for a real team** (not a demo/portfolio), UI scope = **today + Phase 1 workspaces**,
+  and "Colab Workspace" is a **placeholder name**.
+- **Visual direction chosen by the user: "the code review thread"** - the room is a review, not a
+  messenger. Rows with a gutter, author, time and read state; no bubbles, no cards; hairline rules
+  and space carry separation. Light "paper" is primary, dark is a re-authored palette not an
+  inversion. Public Sans + JetBrains Mono. Direction contract lives in
+  `apps/web/.impeccable/surfaces/app-page-tsx.md` (seed key d6a6eb9a). The mandated concept roll
+  had dealt a different direction (a draughting-sheet world); the user's pick overrides the roll.
+- **Built:** token layer with both themes and themed browser surfaces (selection, caret, scrollbar,
+  focus ring, tabular figures); authored SVG icon set; Button/Field/Alert/AuthShell primitives;
+  rebuilt `/login`, `/signup` and the room.
+- **Adversarial finish review returned `fix`, not ship** - 8 material findings, all legitimate.
+  Notably: `--ink-faint` was **3.77:1** on paper (below the 4.5 floor) and was the global
+  `::placeholder` colour; `body` was `min-h-full` so the thread's scroll container was unbounded and
+  the composer would unpin on a long thread; `scrollIntoView` fired on every message regardless of
+  reader position, hijacking anyone reading an older row; and there were **zero responsive rules**
+  in the whole UI. All eight fixed in one batch.
+- **Known seam:** the client parses the server's flat `"User X says: Y"` broadcast with a regex to
+  recover author and text. This is marked TEMPORARY in `page.tsx`. **The real fix is the user's:**
+  make `chat` carry a structured payload (`{ id, authorId, displayName, text, sentAt }`) in
+  `@colab/shared` - that is the realtime layer, which stays hand-written.
+- **Also standing:** `/api/workspaces` does not exist, so the rail renders its honest "not built
+  yet" state. The `ready` branch is written and waiting for step 5.
+
+## 2026-09-25 (later)
+- **Phase 1 Step 4 COMPLETE — cross-process auth verified.** `apps/web/app/page.tsx` now reads the
+  token from `localStorage`, redirects to `/login` when absent, and passes it via the **function**
+  form `auth: (cb) => cb({ token })` (re-reads on every reconnect attempt, unlike the object form
+  which is captured once - matters once logout exists).
+- **Proof run against the live server, 4 scenarios:** no token -> `No token provided` - forged
+  signature -> `Invalid token` - valid token + real user -> **CONNECTED** - valid signature for a
+  non-existent user -> `User not found`. The 4th case is the one worth keeping: it proves signature
+  verification and the DB existence check are **two independent gates**.
+- **Casing bug fixed properly** (`firstName`/`lastName`); an earlier `if (user.firstname && ...)`
+  guard had silenced the symptom while leaving `displayName` permanently unset. Server logs and chat
+  broadcasts now use `displayName` instead of raw UUIDs.
+- **`typecheck` script added to `apps/realtime`** and made to pass. It first failed on a *pre-existing*
+  tsconfig mismatch: realtime used `module: nodenext` (extension-required resolution) while
+  `packages/db` imports Prisma's extensionless output under `moduleResolution: bundler`. Fixed by
+  setting realtime to `module: preserve`, aligning it with how `tsx` and Next actually load that
+  package. **Lesson: in a monorepo the consumer's tsconfig is applied to the imported source, so
+  resolution settings must agree across packages.**
+- **Env formatting gotcha:** both `.env` files were written `JWT_SECRET = 'value'` (spaces +
+  single quotes). Node's `--env-file` and Next's dotenv both strip them so it works, but not every
+  parser does - normalise to `KEY=value`. Both files verified byte-identical by hash.
+- **Next:** Step 5 - workspace creation + `Membership` -> `assertCan` -> role-gated UI +
+  `room:join` authorization. Finishes Phase 1.
+
+## 2026-09-25
+- **Returning from a ~7-week break** (last commit 2026-08-06). No code written; session spent
+  re-orienting and auditing the tree against the vault.
+- **Audit result:** steps 1-3 verified intact; step 4 is half-done as recorded. Realtime `io.use`
+  middleware requires a token, but `apps/web/app/page.tsx` never sends one -> **every socket
+  connection currently fails with `connect_error`**. Expected unfinished work (step 4.5), not a
+  regression.
+- **Bug found (not yet fixed):** `apps/realtime/src/index.ts` reads `user.firstname`/`user.lastname`;
+  the Prisma model defines `firstName`/`lastName`. `tsx` strips types without typechecking, so this
+  never throws - `socket.data.displayName` would just be the string `"undefined undefined"`.
+  **Lesson: `tsx watch` is not a typechecker; `apps/realtime` has no `typecheck` script to catch it.**
+- **Environment is gone, not broken:** `node_modules` empty (`pnpm install`), Docker daemon not
+  running, and **both `.env` files are absent** (`.env*` is gitignored). Postgres credentials are
+  defined in `docker-compose.yml` (`colab:colab@localhost:5432/colab`) - nothing secret was lost.
+  `JWT_SECRET` can be any new random string; its only requirement is being **identical** in
+  `apps/web/.env.local` and `apps/realtime/.env` (HS256 - see [[Auth-HTTP-and-WebSocket]]).
+- **Vault synced:** [[Phases]] tracker still said "Phase 0 not started" (now 0 done / 1 in progress);
+  [[Status]] rewritten with the restart checklist. Original ~1-month timeline marked stale.
+- **Next:** restart env -> 4.5 send the token -> fix the casing -> 4.6 proof -> step 5 workspaces +
+  `assertCan`.
+
 ## 2026-07-31
 - **Phase 1 Step 4 (cross-process auth) nearly done.** Realtime: `io.use` middleware verifies the JWT
   (`@colab/shared/auth`) + confirms the user exists in the DB → `socket.data.userId`; 4 Server

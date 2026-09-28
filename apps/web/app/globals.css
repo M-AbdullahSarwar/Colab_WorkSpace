@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* The room is a review thread: paper ground, ink text, hairline rules, a structural
+   gutter. Light is the primary scene — a reading surface for a working record.
+   Dark is a full second theme, not an inversion. */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --paper: #fbfaf8;
+  --surface: #ffffff;
+  --sunk: #f4f3f0;
+  --ink: #16191d;
+  --ink-muted: #5a636e;
+  --ink-faint: #666e79;
+  --rule: #dde1e6;
+  --rule-strong: #c3c9d1;
+  --accent: #2d3ba8;
+  --accent-hover: #232e86;
+  --accent-ink: #ffffff;
+  --accent-wash: #eceef9;
+  --add: #146c2e;
+  --remove: #a4231c;
+  --warn: #8a5a00;
+  --focus: #2d3ba8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #101215;
+    --surface: #16191d;
+    --sunk: #14171b;
+    --ink: #e8eaed;
+    --ink-muted: #a0a8b4;
+    --ink-faint: #838c99;
+    --rule: #262a30;
+    --rule-strong: #373d45;
+    --accent: #9aa4f2;
+    --accent-hover: #b3bbf7;
+    --accent-ink: #10131f;
+    --accent-wash: #1b1f33;
+    --add: #4cc06a;
+    --remove: #f08078;
+    --warn: #d9a441;
+    --focus: #9aa4f2;
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunk: var(--sunk);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-wash: var(--accent-wash);
+  --color-add: var(--add);
+  --color-remove: var(--remove);
+  --color-warn: var(--warn);
+  --font-sans: var(--font-public-sans);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+html {
+  color-scheme: light dark;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Surfaces the browser draws for us still belong to the design system. */
+
+::selection {
+  background: var(--accent-wash);
+  color: var(--ink);
+}
+
+:root {
+  caret-color: var(--accent);
+  accent-color: var(--accent);
+  scrollbar-color: var(--rule-strong) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rule-strong);
+  border: 3px solid var(--paper);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-faint);
+}
+
+::placeholder {
+  color: var(--ink-faint);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+a {
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+/* Figures line up in a column of timestamps and counts. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* The one authored moment: a row arrives from an already-visible default. */
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.row-in {
+  animation: row-in 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row-in {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+  }
 }

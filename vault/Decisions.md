@@ -54,6 +54,16 @@ Running log. Each entry: decision · why · date. Append newest at the bottom.
     understand *why*, not follow a checklist; bare step lists defeat the point of the project.
     Every non-trivial step gets the problem, the mental model, alternatives, and real links. — 2026-07-23
 
+13. **UI craft: the Impeccable plugin** (`pbakaus/impeccable`, v4.4.0, installed 2026-09-25 at user
+    scope via `claude plugin marketplace add pbakaus/impeccable`). Why: the app's UI is unstyled
+    scaffold output, and seeing the real product makes missing/broken behaviour obvious - a
+    working-UI feedback loop the phases otherwise lack. Provides `/impeccable <init|shape|audit|
+    critique|polish|...>` plus 4 agents and a PostToolUse design-detector hook. **Note:** UI styling
+    counts as the generatable boilerplate [[Overview]] permits; the realtime layer is still
+    hand-written. **Open:** whether to adopt **Intent UI** (React Aria + Tailwind copy-paste
+    components) as the component library - that is a project *dependency*, not a skill. - 2026-09-25
+
 ## Still open (decide when reached)
 - Editor: Tiptap vs CodeMirror 6.
 - Which AI provider to implement first.
+- Component library: Intent UI (React Aria + Tailwind) vs hand-rolled primitives.

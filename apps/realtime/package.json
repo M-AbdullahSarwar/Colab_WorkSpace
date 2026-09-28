@@ -16,6 +16,7 @@
     "typescript": "^6.0.3"
   },
   "scripts": {
-    "dev": "tsx watch --env-file=.env src/index.ts"
+    "dev": "tsx watch --env-file=.env src/index.ts",
+    "typecheck": "tsc --noEmit"
   }
 }

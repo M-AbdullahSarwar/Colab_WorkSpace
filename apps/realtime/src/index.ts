@@ -42,7 +42,7 @@ io.use(async (socket, next) => {
             return next(new Error("Authentication error: User not found"));
         } else {
             socket.data.userId = userId;
-            socket.data.displayName = user.firstname + " " + user.lastname;
+            socket.data.displayName = user.firstName + " " + user.lastName;
         }
     } catch {
         return next(new Error("Authentication error: Invalid token"));
@@ -51,15 +51,19 @@ io.use(async (socket, next) => {
 });
 
 io.on("connection", (socket) => {
-    console.log(`A user connected: ${socket.data.userId}`);
+    console.log(
+        `A user connected: ${socket.data.displayName} (ID: ${socket.data.userId})`,
+    );
     socket.on("disconnect", () => {
-        console.log("user disconnected");
+        console.log(
+            `User disconnected: ${socket.data.displayName} (ID: ${socket.data.userId})`,
+        );
     });
 
     socket.on("chat", (chatMessage) => {
         console.log(`Received chat message: ${chatMessage}`);
 
-        io.emit("chat", `User ${socket.data.userId} says: ${chatMessage}`); // Broadcast the chat message to all connected clients
+        io.emit("chat", `User ${socket.data.displayName} says: ${chatMessage}`); // Broadcast the chat message to all connected clients
     });
 });
 

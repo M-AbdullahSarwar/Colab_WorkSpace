@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-28T00:00:00.000Z",
+  "title": "Design System: Colab Workspace",
+  "extensions": {
+    "themes": {
+      "note": "Light is the primary scene. Dark is a separately authored palette applied under prefers-color-scheme: dark, not an inversion. The frontmatter carries the light value; each colorMeta entry carries its dark counterpart.",
+      "strategy": "prefers-color-scheme",
+      "colorScheme": "light dark"
+    },
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#fbfaf8",
+        "dark": "#101215",
+        "usage": "Page ground, set on body. Also the 3px inset border on the scrollbar thumb.",
+        "tonalRamp": ["#1a1917", "#34322e", "#4e4b46", "#6b675f", "#8f8a81", "#b5b0a6", "#dad6ce", "#fbfaf8"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Sheet White",
+        "canonical": "#ffffff",
+        "dark": "#16191d",
+        "usage": "Only surfaces a person types into: inputs, select, composer.",
+        "tonalRamp": ["#191b1e", "#303337", "#494d52", "#666b71", "#8c9198", "#b2b7bd", "#d9dce0", "#ffffff"]
+      },
+      "sunk": {
+        "role": "neutral",
+        "displayName": "Recessed Paper",
+        "canonical": "#f4f3f0",
+        "dark": "#14171b",
+        "usage": "The one tonal step down: thread gutter at 60%, rail-item and quiet-button hover, presence chip.",
+        "tonalRamp": ["#191815", "#312f2b", "#4a4842", "#67645c", "#8c887f", "#b1ada3", "#d3cfc7", "#f4f3f0"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Near-Black Ink",
+        "canonical": "#16191d",
+        "dark": "#e8eaed",
+        "usage": "Body copy, message text, author names, headings, alert sentence.",
+        "tonalRamp": ["#05070a", "#0d1013", "#16191d", "#2b3038", "#4a515c", "#737c89", "#a7aeb9", "#dde1e6"]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Slate Ink",
+        "canonical": "#5a636e",
+        "dark": "#a0a8b4",
+        "usage": "Secondary text: field labels, intros, signed-in name, connection copy, rail explanatory text.",
+        "tonalRamp": ["#0d1013", "#1c2128", "#2e353e", "#434c57", "#5a636e", "#838c99", "#aeb6c0", "#dfe3e8"]
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Faint Slate",
+        "canonical": "#6b737e",
+        "dark": "#838c99",
+        "usage": "Third text tier: clock times, placeholders, hints, role tags, disabled rail action, scrollbar thumb hover. Floor of the text scale; it must clear 4.5:1 on paper.",
+        "tonalRamp": ["#101318", "#20252c", "#333941", "#4d545d", "#6b737e", "#8f97a1", "#b4bbc3", "#dfe2e6"]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#dde1e6",
+        "dark": "#262a30",
+        "usage": "Every 1px border in the system.",
+        "tonalRamp": ["#14171a", "#262a30", "#3a3f46", "#52585f", "#6f757d", "#939aa2", "#b9bfc6", "#dde1e6"]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Heavy Hairline",
+        "canonical": "#c3c9d1",
+        "dark": "#373d45",
+        "usage": "The deliberate second stroke weight: input hover strokes, scrollbar thumb, empty-state icon.",
+        "tonalRamp": ["#13161a", "#242930", "#373d45", "#4e555e", "#6c737d", "#909aa4", "#aab2bc", "#c3c9d1"]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Ink Indigo",
+        "canonical": "#2d3ba8",
+        "dark": "#9aa4f2",
+        "usage": "The only accent. Primary button fill, focus ring, unread bar, caret, accent-color, the you tag and unread count. Nothing decorative.",
+        "tonalRamp": ["#0a0e2b", "#141a4f", "#1d2673", "#2d3ba8", "#4b57c4", "#7681da", "#a8afec", "#dfe2f9"]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Deep Ink Indigo",
+        "canonical": "#232e86",
+        "dark": "#b3bbf7",
+        "usage": "Primary button hover fill only."
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Accent Counter",
+        "canonical": "#ffffff",
+        "dark": "#10131f",
+        "usage": "Text and icons on an accent fill."
+      },
+      "accent-wash": {
+        "role": "primary",
+        "displayName": "Indigo Wash",
+        "canonical": "#eceef9",
+        "dark": "#1b1f33",
+        "usage": "Text-selection background, picked so selected ink stays at full contrast. A browser surface, not a component fill."
+      },
+      "add": {
+        "role": "tertiary",
+        "displayName": "Addition Green",
+        "canonical": "#146c2e",
+        "dark": "#4cc06a",
+        "usage": "Live connection dot. Real additive state only.",
+        "tonalRamp": ["#041007", "#072413", "#0b3d1c", "#146c2e", "#1f9142", "#46b567", "#86d49c", "#cdefd7"]
+      },
+      "remove": {
+        "role": "tertiary",
+        "displayName": "Removal Red",
+        "canonical": "#a4231c",
+        "dark": "#f08078",
+        "usage": "Disconnected dot, alert stroke and frame, danger button hover stroke and wash, rail failure line.",
+        "tonalRamp": ["#1d0503", "#380a07", "#5c120d", "#7d1a14", "#a4231c", "#cf4a3f", "#e58a82", "#f6cfcb"]
+      },
+      "warn": {
+        "role": "tertiary",
+        "displayName": "Amber Caution",
+        "canonical": "#8a5a00",
+        "dark": "#d9a441",
+        "usage": "The connecting dot, and nothing else.",
+        "tonalRamp": ["#170e00", "#2e1d00", "#4a2f00", "#6a4300", "#8a5a00", "#b57a12", "#dba946", "#f3dca8"]
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Focus Indigo",
+        "canonical": "#2d3ba8",
+        "dark": "#9aa4f2",
+        "usage": "Declared separately from accent so the global :focus-visible outline has its own token. Currently tracks accent in both scenes."
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The single h1 on each auth surface. Once per page, never in the room." },
+      "title": { "displayName": "Title", "purpose": "Product name in the app header and the room name above the thread." },
+      "author": { "displayName": "Author", "purpose": "The name on the first row of a hunk." },
+      "body": { "displayName": "Body", "purpose": "Message text, rail copy, intros, links. Capped at 68ch, newlines preserved." },
+      "control": { "displayName": "Control", "purpose": "Every button label." },
+      "hint": { "displayName": "Hint", "purpose": "Field hints and the connection line in the rail footer." },
+      "label": { "displayName": "Label", "purpose": "Uppercase field labels and section headings. The only uppercase above mono size." },
+      "figure": { "displayName": "Figure", "purpose": "Clock times, unread count, connection-failure string. Tabular numerals where figures stack." },
+      "tag": { "displayName": "Tag", "purpose": "Workspace roles, the you marker, presence initials." }
+    },
+    "fonts": [
+      { "name": "Public Sans", "source": "next/font/google", "variable": "--font-public-sans", "display": "swap", "role": "sans / everything a person wrote" },
+      { "name": "JetBrains Mono", "source": "next/font/google", "variable": "--font-jetbrains-mono", "display": "swap", "role": "mono / everything the machine counted" }
+    ],
+    "shadows": [],
+    "elevation": {
+      "model": "flat",
+      "note": "No box-shadow, gradient, blur or backdrop-filter exists in the build. Depth is a 1px hairline (rule, stepping to rule-strong) plus a single tonal step: surface above the ground, sunk below it."
+    },
+    "motion": [
+      { "name": "row-in", "value": "row-in 320ms cubic-bezier(0.16, 1, 0.3, 1) both", "purpose": "The system's one authored animation: a message row arriving from opacity 0 and 6px below. Removed entirely under prefers-reduced-motion." },
+      { "name": "color-shift", "value": "transition: color 150ms, background-color 150ms, border-color 150ms", "purpose": "The only other movement in the system: hover and focus colour changes on buttons, inputs and rail items. Clamped to 1ms under prefers-reduced-motion." }
+    ],
+    "focusRing": {
+      "value": "outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 2px",
+      "purpose": "Global :focus-visible treatment on every focusable element. Inputs additionally turn their own stroke accent at a 1px offset."
+    },
+    "breakpoints": [
+      { "name": "sm", "value": "640px", "purpose": "Signed-in name and the text labels on icon-plus-text buttons appear." },
+      { "name": "md", "value": "768px", "purpose": "The 260px rail becomes a permanent side column; below it, rail and thread are mutually exclusive full-width views. Thread padding steps 16px to 20px and the gutter 56px to 72px." }
+    ],
+    "layout": {
+      "railWidth": "260px",
+      "gutterWidth": { "base": "56px", "md": "72px" },
+      "appHeaderHeight": "48px",
+      "sectionHeaderHeight": "44px",
+      "controlHeight": "36px",
+      "compactControlHeight": "32px",
+      "authColumnWidth": "384px",
+      "messageMeasure": "68ch",
+      "scrollPinThreshold": "48px",
+      "hunkWindow": "5 minutes"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one accent-filled control: send in the room, submit on both auth surfaces.",
+      "html": "<button class=\"ds-btn-primary\"><svg class=\"ds-icon\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2.5 8h9M8.5 4.5 12 8l-3.5 3.5\"/></svg>Send</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 0 14px; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: var(--accent-ink, #ffffff); background: var(--accent, #2d3ba8); border: none; border-radius: 3px; cursor: pointer; transition: background-color 150ms, color 150ms, border-color 150ms; } .ds-btn-primary .ds-icon { width: 16px; height: 16px; } .ds-btn-primary:hover { background: var(--accent-hover, #232e86); } .ds-btn-primary:focus-visible { outline: 2px solid var(--focus, #2d3ba8); outline-offset: 2px; border-radius: 2px; } .ds-btn-primary:disabled { opacity: 0.45; cursor: not-allowed; background: var(--accent, #2d3ba8); }"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Outlined secondary control in muted ink; the sign-out action, shown here at the compact 32px header height.",
+      "html": "<button class=\"ds-btn-quiet\"><svg class=\"ds-icon\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 13.5H3.5a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1H6M10 11l3-3-3-3M13 8H6\"/></svg>Sign out</button>",
+      "css": ".ds-btn-quiet { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 32px; padding: 0 10px; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: var(--ink-muted, #5a636e); background: transparent; border: 1px solid var(--rule, #dde1e6); border-radius: 3px; cursor: pointer; transition: background-color 150ms, color 150ms, border-color 150ms; } .ds-btn-quiet .ds-icon { width: 16px; height: 16px; } .ds-btn-quiet:hover { color: var(--ink, #16191d); background: var(--sunk, #f4f3f0); } .ds-btn-quiet:focus-visible { outline: 2px solid var(--focus, #2d3ba8); outline-offset: 2px; border-radius: 2px; }"
+    },
+    {
+      "name": "Danger Button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "Destructive intent shown on approach, not at rest: neutral stroke with red text until hover turns the stroke red over a 5% wash.",
+      "html": "<button class=\"ds-btn-danger\">Delete workspace</button>",
+      "css": ".ds-btn-danger { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 0 14px; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: var(--remove, #a4231c); background: transparent; border: 1px solid var(--rule, #dde1e6); border-radius: 3px; cursor: pointer; transition: background-color 150ms, color 150ms, border-color 150ms; } .ds-btn-danger:hover { border-color: var(--remove, #a4231c); background: color-mix(in srgb, var(--remove, #a4231c) 5%, transparent); } .ds-btn-danger:focus-visible { outline: 2px solid var(--focus, #2d3ba8); outline-offset: 2px; border-radius: 2px; } .ds-btn-danger:disabled { opacity: 0.45; cursor: not-allowed; }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field-input",
+      "description": "Label, input and optional hint as one stack. Labels are always present; there are no placeholder-only fields.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-email\">Email</label><input class=\"ds-field-input\" id=\"ds-email\" type=\"email\" placeholder=\"you@team.com\"><p class=\"ds-field-hint\">We only use this to sign you in.</p></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; max-width: 24rem; } .ds-field-label { font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted, #5a636e); } .ds-field-input { height: 36px; padding: 0 10px; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; color: var(--ink, #16191d); background: var(--surface, #ffffff); border: 1px solid var(--rule, #dde1e6); border-radius: 3px; transition: border-color 150ms; } .ds-field-input::placeholder { color: var(--ink-faint, #6b737e); } .ds-field-input:hover { border-color: var(--rule-strong, #c3c9d1); } .ds-field-input:focus { border-color: var(--accent, #2d3ba8); outline: none; } .ds-field-input:focus-visible { outline: 2px solid var(--accent, #2d3ba8); outline-offset: 1px; } .ds-field-hint { margin: 0; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.75rem; color: var(--ink-faint, #6b737e); }"
+    },
+    {
+      "name": "Alert",
+      "kind": "custom",
+      "refersTo": "alert",
+      "description": "Form-level error. Red frames the problem; the sentence itself stays in full-contrast ink so it is readable.",
+      "html": "<div class=\"ds-alert\" role=\"alert\"><svg class=\"ds-alert-icon\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 2.5 14.5 13.5h-13L8 2.5ZM8 6.5v3M8 11.5h.01\"/></svg><span class=\"ds-alert-text\">That email and password don&rsquo;t match an account</span></div>",
+      "css": ".ds-alert { display: flex; align-items: flex-start; gap: 8px; max-width: 24rem; padding: 10px 12px; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; color: var(--remove, #a4231c); background: color-mix(in srgb, var(--remove, #a4231c) 6%, transparent); border: 1px solid color-mix(in srgb, var(--remove, #a4231c) 35%, transparent); border-radius: 3px; } .ds-alert-icon { width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; } .ds-alert-text { color: var(--ink, #16191d); }"
+    },
+    {
+      "name": "Composer",
+      "kind": "input",
+      "refersTo": "composer",
+      "description": "The pinned bottom band of the thread column: a growing textarea with the primary action at its right. Enter sends, Shift+Enter keeps the newline.",
+      "html": "<form class=\"ds-composer\"><textarea class=\"ds-composer-input\" rows=\"1\" placeholder=\"Write to the room &mdash; Shift+Enter for a new line\"></textarea><button class=\"ds-composer-send\" type=\"submit\"><svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2.5 8h9M8.5 4.5 12 8l-3.5 3.5\"/></svg>Send</button></form>",
+      "css": ".ds-composer { display: flex; align-items: flex-end; gap: 8px; padding: 12px 20px; background: var(--paper, #fbfaf8); border-top: 1px solid var(--rule, #dde1e6); } .ds-composer-input { flex: 1; min-height: 36px; max-height: 160px; padding: 8px 12px; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; color: var(--ink, #16191d); background: var(--surface, #ffffff); border: 1px solid var(--rule, #dde1e6); border-radius: 3px; resize: vertical; transition: border-color 150ms; } .ds-composer-input::placeholder { color: var(--ink-faint, #6b737e); } .ds-composer-input:hover { border-color: var(--rule-strong, #c3c9d1); } .ds-composer-input:focus { border-color: var(--accent, #2d3ba8); outline: none; } .ds-composer-input:disabled { opacity: 0.6; cursor: not-allowed; } .ds-composer-send { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: var(--accent-ink, #ffffff); background: var(--accent, #2d3ba8); border: none; border-radius: 3px; cursor: pointer; transition: background-color 150ms; } .ds-composer-send svg { width: 16px; height: 16px; } .ds-composer-send:hover { background: var(--accent-hover, #232e86); } .ds-composer-send:focus-visible { outline: 2px solid var(--focus, #2d3ba8); outline-offset: 2px; border-radius: 2px; }"
+    },
+    {
+      "name": "Workspace Rail Item",
+      "kind": "nav",
+      "refersTo": "rail-item",
+      "description": "A rail entry: name truncating on the left, role as an uppercase mono tag on the right, baseline aligned.",
+      "html": "<nav class=\"ds-rail\"><h2 class=\"ds-rail-heading\">Workspaces</h2><ul class=\"ds-rail-list\"><li><button class=\"ds-rail-item\" type=\"button\"><span class=\"ds-rail-name\">Platform Team</span><span class=\"ds-rail-role\">OWNER</span></button></li><li><button class=\"ds-rail-item\" type=\"button\"><span class=\"ds-rail-name\">Design Review</span><span class=\"ds-rail-role\">VIEWER</span></button></li></ul></nav>",
+      "css": ".ds-rail { width: 260px; padding: 0 16px 16px; border-right: 1px solid var(--rule, #dde1e6); } .ds-rail-heading { display: flex; align-items: center; height: 44px; margin: 0; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-muted, #5a636e); } .ds-rail-list { display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 0; list-style: none; } .ds-rail-item { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; width: 100%; padding: 6px 8px; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; text-align: left; color: var(--ink, #16191d); background: transparent; border: none; border-radius: 3px; cursor: pointer; transition: background-color 150ms; } .ds-rail-item:hover { background: var(--sunk, #f4f3f0); } .ds-rail-item:focus-visible { outline: 2px solid var(--focus, #2d3ba8); outline-offset: 2px; border-radius: 2px; } .ds-rail-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-rail-role { flex-shrink: 0; font-family: var(--font-jetbrains-mono), ui-monospace, monospace; font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint, #6b737e); }"
+    },
+    {
+      "name": "Message Row",
+      "kind": "custom",
+      "refersTo": "message-row",
+      "description": "The signature component. A ruled two-column row: mono clock time in the gutter, author line and paragraph in the body. Consecutive rows from one author inside five minutes group into a hunk and drop both time and author. Unread rows carry a 2px accent bar in the gutter.",
+      "html": "<ol class=\"ds-thread\"><li class=\"ds-row\"><div class=\"ds-row-gutter\"><span class=\"ds-row-time\">09:42</span></div><div class=\"ds-row-body\"><div class=\"ds-row-head\"><span class=\"ds-row-author\">Amina Rahman</span></div><p class=\"ds-row-text\">Pushed the handshake fix &mdash; the orphaned-token case is covered now.</p></div></li><li class=\"ds-row ds-row--grouped\"><div class=\"ds-row-gutter\"></div><div class=\"ds-row-body\"><p class=\"ds-row-text\">Worth a second pair of eyes on the reconnect path.</p></div></li><li class=\"ds-row ds-row--unread\"><div class=\"ds-row-gutter\"><span class=\"ds-row-unread\" title=\"Unread\"></span><span class=\"ds-row-time\">09:47</span></div><div class=\"ds-row-body\"><div class=\"ds-row-head\"><span class=\"ds-row-author\">Daniel Okoro</span><span class=\"ds-row-you\">you</span></div><p class=\"ds-row-text\">Looking now.</p></div></li></ol>",
+      "css": ".ds-thread { position: relative; margin: 0; padding: 0; list-style: none; background: var(--paper, #fbfaf8); } .ds-row { display: grid; grid-template-columns: 72px 1fr; border-bottom: 1px solid var(--rule, #dde1e6); animation: ds-row-in 320ms cubic-bezier(0.16, 1, 0.3, 1) both; } .ds-row-gutter { position: relative; padding: 8px 16px; text-align: right; background: color-mix(in srgb, var(--sunk, #f4f3f0) 60%, transparent); border-right: 1px solid var(--rule, #dde1e6); } .ds-row-time { font-family: var(--font-jetbrains-mono), ui-monospace, monospace; font-size: 0.6875rem; font-variant-numeric: tabular-nums; color: var(--ink-faint, #6b737e); } .ds-row-unread { position: absolute; inset-block: 0; left: 0; width: 2px; background: var(--accent, #2d3ba8); } .ds-row-body { padding: 8px 20px; min-width: 0; } .ds-row-head { display: flex; align-items: center; gap: 8px; } .ds-row-author { font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.8125rem; font-weight: 600; color: var(--ink, #16191d); } .ds-row-you { font-family: var(--font-jetbrains-mono), ui-monospace, monospace; font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent, #2d3ba8); } .ds-row-text { margin: 0; max-width: 68ch; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; line-height: 1.625; color: var(--ink, #16191d); white-space: pre-wrap; overflow-wrap: break-word; } @keyframes ds-row-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } } @media (prefers-reduced-motion: reduce) { .ds-row { animation: none; } }"
+    },
+    {
+      "name": "Presence Chip",
+      "kind": "chip",
+      "refersTo": "presence-chip",
+      "description": "A 20px square of initials, not a circular avatar. Built only from people who have actually spoken in the session.",
+      "html": "<div class=\"ds-presence\"><span class=\"ds-chip\" title=\"Amina Rahman\">AR</span><span class=\"ds-chip\" title=\"Daniel Okoro\">DO</span><span class=\"ds-status\"><span class=\"ds-dot\"></span>Live</span></div>",
+      "css": ".ds-presence { display: flex; align-items: center; gap: 12px; } .ds-chip { display: grid; place-items: center; width: 20px; height: 20px; font-family: var(--font-jetbrains-mono), ui-monospace, monospace; font-size: 0.625rem; color: var(--ink-muted, #5a636e); background: var(--sunk, #f4f3f0); border: 1px solid var(--rule, #dde1e6); border-radius: 3px; } .ds-status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.75rem; color: var(--ink-muted, #5a636e); } .ds-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--add, #146c2e); }"
+    },
+    {
+      "name": "Empty State",
+      "kind": "custom",
+      "refersTo": "message-row",
+      "description": "The thread with nothing in it: a stroked icon in the heavy hairline colour, a full-contrast line naming the state, a muted line saying what to do about it. No illustration, no button, no card.",
+      "html": "<div class=\"ds-empty\"><svg class=\"ds-empty-icon\" viewBox=\"0 0 32 32\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 7h22M5 13h14M5 19h18M5 25h9\"/></svg><p class=\"ds-empty-title\">Nothing in this thread yet.</p><p class=\"ds-empty-body\">Messages are broadcast to everyone connected. Open a second browser and sign in as another member to watch it work.</p></div>",
+      "css": ".ds-empty { max-width: 22rem; margin: 0 auto; padding: 24px; text-align: center; } .ds-empty-icon { width: 32px; height: 32px; color: var(--rule-strong, #c3c9d1); } .ds-empty-title { margin: 16px 0 0; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; color: var(--ink, #16191d); } .ds-empty-body { margin: 6px 0 0; font-family: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; line-height: 1.625; color: var(--ink-muted, #5a636e); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Review Thread",
+    "overview": "This is a working record, not a conversation window. The room reads like a diff view a team is writing together: a warm paper ground, near-black ink text, a structural monospace gutter running the full height of the thread, and every utterance rendered as a ruled row with an author, a clock time and a read state. Where the category ships alternating coloured bubbles, this world ships rows. Nothing about a message's identity is carried by a shape or a fill — it is carried by the gutter mark, the author line and the `you` tag.\n\nDensity is that of a text editor rather than a marketing page: 36px controls, 44px section headers, 48px app header, 8px vertical padding on a message row. The interface is almost entirely two neutrals and one accent. Separation is done with a single hairline colour and with space; there is not one shadow, gradient or blur in the build. Light is the primary scene — a reading surface for a record people will scan for hours — and dark is a second, separately authored palette rather than an inversion of the first.\n\nColour is lawful and scarce. Ink indigo is the only accent and it means \"interactive primary, focus, or unread\". Addition green, removal red and amber caution mark real system state (connected, disconnected, connecting, destructive, failed) and are never spent on emphasis or category. The result is a surface where a spot of colour is always information.",
+    "keyCharacteristics": [
+      "Paper ground (`paper`) with near-black ink body text; white only for surfaces you type into",
+      "Hairline rules and a tonal gutter instead of cards, panels or shadows",
+      "One accent, ink indigo, for interactive primary, focus and unread only",
+      "Public Sans for what people wrote; JetBrains Mono, tabular, for what the machine counted",
+      "3px radius on every box; circles reserved for things that genuinely are dots",
+      "Two fully authored themes, light primary and dark peer, switched by `prefers-color-scheme`",
+      "One authored motion: a row arriving from an already-visible default"
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Ink indigo is the system's only accent. It marks interactive primary, focus and unread. If a mark is not one of those three things, it is not indigo.", "section": "colors" },
+      { "name": "The Status-Colour Law", "body": "Green, red and amber report real machine state — connected, disconnected, connecting, destructive, failed. They never carry emphasis, category, sentiment or decoration. A green dot in this interface always means a socket is open.", "section": "colors" },
+      { "name": "The Two-Scene Rule", "body": "Dark is an authored palette, not an inversion. Every token is picked again for the dark ground — the accent flips from deep indigo to light periwinkle, the status hues are re-lightened — so neither scene is the other one turned inside out.", "section": "colors" },
+      { "name": "The White-Means-Editable Rule", "body": "`surface` white appears only where a person may type. Everything else sits on paper.", "section": "colors" },
+      { "name": "The Figures-in-Mono Rule", "body": "Public Sans carries what a person wrote. JetBrains Mono carries what the machine counted — times, roles, ids, counts, error strings. Anything mono that stacks in a column also carries `.tnum` (tabular numerals) so the column is straight.", "section": "typography" },
+      { "name": "The 68ch Rule", "body": "A message paragraph is capped at 68 characters of measure however wide the thread column grows. The column may widen; the line never does.", "section": "typography" },
+      { "name": "The Uppercase Budget Rule", "body": "Uppercase exists only at 10–11px with 0.08em tracking, on field labels, section headings and mono tags. Nothing inside a sentence, and nothing above 11px, is uppercased.", "section": "typography" },
+      { "name": "The Nothing-Floats Rule", "body": "No overlay, no drawer, no popover, no modal. Every region resolves to the viewport through the flex chain. The only absolutely positioned elements are the gutter field behind the rows and the unread bar inside a row — both structural, both behind or within content.", "section": "layout" },
+      { "name": "The Hairline-Meeting Rule", "body": "Two regions meet on exactly one 1px `rule` border. Never two borders, never a border plus a gap, never a border plus a change of fill.", "section": "layout" },
+      { "name": "The Hairline-Only Rule", "body": "Separation is a rule or it is space. A surface never earns separation from a shadow, a gradient, a glow or a blurred backdrop.", "section": "elevation" },
+      { "name": "The Two-Step Tonal Rule", "body": "The ground has exactly one step up (`surface`) and one step down (`sunk`). A third tonal surface is a sign the layout, not the palette, needs the work.", "section": "elevation" },
+      { "name": "The 3px Rule", "body": "Every box is 3px. Not 4, not 6, not per-component.", "section": "shapes" },
+      { "name": "The Circle-Means-Dot Rule", "body": "A fully rounded shape in this system is a status dot or a scrollbar thumb. It is never an avatar, a badge, a pill button or a chip.", "section": "shapes" },
+      { "name": "The One Motion Rule", "body": "The system has exactly one authored animation and it animates a row arriving. Motion is spent on the thing the product is about; nothing else moves.", "section": "components" }
+    ],
+    "dos": [
+      "Do separate regions with a single 1px `rule` hairline, or with space.",
+      "Do keep every box at 3px, and the focus ring at a 2px radius with a 2px accent outline at 2px offset.",
+      "Do set times, counts, roles, ids and error strings in JetBrains Mono, with `.tnum` when they stack in a column.",
+      "Do reserve white (`surface`) for surfaces a person types into.",
+      "Do cap message measure at 68ch and let the column be wider than the line.",
+      "Do author both themes when adding a colour: a token without a dark value is an unfinished token.",
+      "Do show absent capability honestly, in muted ink, as a sentence that names what is missing and what happens meanwhile.",
+      "Do draw new icons on the 16px grid at 1.5px stroke with round caps, `currentColor` and `aria-hidden`.",
+      "Do state a disabled control's reason in its `aria-label` or its placeholder."
+    ],
+    "donts": [
+      "Don't add a shadow, gradient, blur or backdrop-filter — the build has none, and depth comes from the hairline plus one tonal step.",
+      "Don't spend ink indigo on anything other than interactive primary, focus or unread.",
+      "Don't spend green, red or amber on anything other than real machine state.",
+      "Don't introduce a third tonal surface beyond `surface` above the ground and `sunk` below it.",
+      "Don't render a message as a bubble, tint it by author, or align one author's rows to the opposite side — identity lives in the author line, the `you` tag and the gutter.",
+      "Don't add a circular avatar; the presence mark is a 3px-cornered square of initials built from real participation.",
+      "Don't use a text glyph, emoji or icon-font character where an icon belongs.",
+      "Don't uppercase anything above 11px, or anything inside a sentence.",
+      "Don't float anything — no modal, drawer, popover or floating panel; regions resolve through the flex chain to the viewport.",
+      "Don't add a second animation; `row-in` is the system's one authored motion."
+    ]
+  }
+}
