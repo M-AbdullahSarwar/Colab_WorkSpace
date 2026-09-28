@@ -20,15 +20,21 @@
    `@colab/shared/schema`, service in a new `apps/web/lib/workspace.ts` (with `import "server-only"`),
    thin route. Creating a workspace must **also** create the creator's `Membership` with
    `role: OWNER` — both writes in a `prisma.$transaction` so a half-created workspace can't exist.
-2. **`assertCan(userId, workspaceId, action)`** — lives in `@colab/shared` because **both** processes
-   need it (HTTP routes and socket handlers). Looks up the `Membership` row (single indexed query via
+2. **`assertCan(userId, workspaceId, action)`** — **NOT in `@colab/shared`** (corrected 2026-09-28).
+   Both processes need it, but it requires Prisma, and `@colab/shared` is imported by **client
+   components** (`@colab/shared/schema`) — putting Prisma behind it drags the DB toward the browser
+   bundle, the same boundary that bit us in July. It belongs in **`@colab/db`**, which already owns
+   Prisma and is server-only in practice. Both apps already depend on it. Looks up the `Membership` row (single indexed query via
    `@@unique([workspaceId, userId])`), throws if missing or the role is too weak. **Queries the DB
    every time** — never reads a role off the token or `socket.data` ([[Auth-HTTP-and-WebSocket]]).
    Prefer a `role -> allowed actions` map over scattered `if (role === "OWNER")` checks.
 3. **`room:join` authorization** — add the event to `ClientToServerEvents`; in realtime, call
    `assertCan(socket.data.userId, workspaceId, "read")` before `socket.join(...)`. Gate the **join**,
    never the connection — a new user with no workspace must still be able to connect.
-4. **Role-gated UI** — cosmetic only; the server check in (2) is the actual security.
+4. **User management** — list members, invite, change role, revoke. Every one of these is an
+   `assertCan` call. Guard the last-OWNER case explicitly.
+5. **Role-gated UI** — cosmetic only; the server check in (2) is the actual security. The rail is
+   already wired to `/api/workspaces` and will light up the moment the endpoint exists.
 
 ## UI (added 2026-09-28)
 The app is no longer scaffold. Visual world: **the code review thread** — chosen by the user from a
